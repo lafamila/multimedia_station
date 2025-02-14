@@ -18,15 +18,7 @@ class Item(BaseModel):
 async def health_check():
     return {"status" : "ok"}
 
-@app.get("/download/{platform}/{key}")
-async def get_file(platform: str, key: str, response: Response):
-    if platform not in AVAILABLE_PLATFORMS:
-        response.status_code = status.HTTP_404_NOT_FOUND
-        return {}
 
-    if platform == "youtube":
-        result = yt_api.get_output_path(key)
-        return FileResponse(result['output_path'], filename=result['title'], media_type="video/*")
 
 @app.post("/download")
 async def download(item: Item, background_tasks: BackgroundTasks, response: Response):
@@ -51,6 +43,16 @@ async def get_status(platform: str, key: str, response: Response):
         if result['status_code'] == 'DONE':
             return RedirectResponse(f"/download/{platform}/{key}", status_code=status.HTTP_303_SEE_OTHER)
         return result
+
+@app.get("/download/{platform}/{key}")
+async def get_file(platform: str, key: str, response: Response):
+    if platform not in AVAILABLE_PLATFORMS:
+        response.status_code = status.HTTP_404_NOT_FOUND
+        return {}
+
+    if platform == "youtube":
+        result = yt_api.get_output_path(key)
+        return FileResponse(result['output_path'], filename=result['title'], media_type="video/*")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
