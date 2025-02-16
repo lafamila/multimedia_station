@@ -5,8 +5,8 @@ from fastapi.responses import FileResponse, RedirectResponse
 from pydantic import BaseModel
 from urllib.parse import urlparse, parse_qs
 
-from src.youtube import api as yt_api
-from src.youtube import downloader
+from youtube import api as yt_api
+from youtube import downloader
 app = FastAPI()
 
 AVAILABLE_PLATFORMS = ("youtube", )
