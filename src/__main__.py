@@ -55,4 +55,4 @@ async def get_file(platform: str, key: str, response: Response):
         return FileResponse(result['output_path'], filename=result['title'], media_type="video/*")
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=20021)
