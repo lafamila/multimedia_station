@@ -6,7 +6,7 @@ pipeline {
     environment {
         GITHUB_URL = 'https://github.com/lafamila/multimedia_station.git'
         GITHUB_CRED_ID = 'github-token'
-        GITHUB_BRANCH = 'master'
+        GITHUB_BRANCH = 'main'
         REPO_TAG = 'multimedia-station'
         CONTAINER_NAME = 'multimedia-station'
         DB_USER = credentials('console-db-user')
