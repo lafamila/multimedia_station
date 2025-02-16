@@ -3,10 +3,12 @@ FROM python:3.12.7-slim as builder
 RUN mkdir /multimedia_station
 COPY /src/. /multimedia_station
 WORKDIR /multimedia_station
-
-RUN apt-get update \
-      && apt-get install -y --no-install-recommends gcc libc-dev \
-      && rm -rf /var/lib/apt/lists/*
+RUN set -x \
+    && add-apt-repository ppa:mc3man/trusty-media \
+    && apt-get update \
+    && apt-get dist-upgrade \
+    && apt-get install -y --no-install-recommends gcc libc-dev ffmpeg\
+    && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip \
       && pip install --user -r requirements.txt
