@@ -5,7 +5,7 @@ COPY /src/. /multimedia_station
 WORKDIR /multimedia_station
 RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common python3-launchpadlib
 RUN set -x \
-    && add-apt-repository ppa:mc3man/trusty-media \
+    && add-apt-repository -y ppa:mc3man/trusty-media \
     && apt-get update \
     && apt-get dist-upgrade \
     && apt-get install -y --no-install-recommends gcc libc-dev ffmpeg\
