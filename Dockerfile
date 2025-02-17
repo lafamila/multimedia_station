@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y apt-transport-https ca-certificates cur
 RUN set -x \
     && add-apt-repository -y ppa:mc3man/trusty-media \
     && apt-get update \
-    && apt-get dist-upgrade \
+    && apt-get dist-upgrade -y \
     && apt-get install -y --no-install-recommends gcc libc-dev ffmpeg\
     && rm -rf /var/lib/apt/lists/*
 
