@@ -3,7 +3,7 @@ FROM python:3.12.7-slim as builder
 RUN mkdir /multimedia_station
 COPY /src/. /multimedia_station
 WORKDIR /multimedia_station
-RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+RUN apt-get update && apt-get install -y apt-transport-https ca-certificates curl software-properties-common python3-launchpadlib
 RUN set -x \
     && add-apt-repository ppa:mc3man/trusty-media \
     && apt-get update \
