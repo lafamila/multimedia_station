@@ -17,7 +17,7 @@ def download(url: str):
         'format': 'bestvideo*+bestaudio/best',
         # 'paths': {"*" : os.path.abspath("./files/")}
     }
-    conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEME, port=DB_PORT)
+    conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEME, port=int(DB_PORT))
     curs = conn.cursor(pymysql.cursors.DictCursor)
     
     query = parse_qs(urlparse(url).query)
