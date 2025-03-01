@@ -5,6 +5,11 @@ import ffmpeg
 import pymysql
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime
+DB_USER = os.getenv('DB_USER')
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT', "3306")
+DB_SCHEME = os.getenv('DB_SCHEME')
 
 
 def download(url: str):
@@ -12,7 +17,7 @@ def download(url: str):
         'format': 'bestvideo*+bestaudio/best',
         # 'paths': {"*" : os.path.abspath("./files/")}
     }
-    conn = pymysql.connect(host='localhost', user='root', password='P@ssw0rd', db='multimedia')
+    conn = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEME, port=DB_PORT)
     curs = conn.cursor(pymysql.cursors.DictCursor)
     
     query = parse_qs(urlparse(url).query)

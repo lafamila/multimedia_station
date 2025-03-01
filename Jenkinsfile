@@ -65,7 +65,7 @@ pipeline {
                         echo 'No container name: $CONTAINER_NAME'
                     }
 
-                    sh 'docker run --name $CONTAINER_NAME -d --network host -e DB_USE=$DB_USER -e DB_PASSWORD=$DB_PASSWORD -e DB_HOST=$DB_HOST -e DB_PORT=$DB_PORT -e DB_SCHEME=$DB_SCHEME -p 20021:20021 $REPO_TAG'
+                    sh 'docker run --name $CONTAINER_NAME -d --network host -e DB_USER=$DB_USER -e DB_PASSWORD=$DB_PASSWORD -e DB_HOST=$DB_HOST -e DB_PORT=$DB_PORT -e DB_SCHEME=$DB_SCHEME -p 20021:20021 $REPO_TAG'
                 }
                 echo 'Deploy end'
             }
